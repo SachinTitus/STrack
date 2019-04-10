@@ -1,0 +1,9 @@
+.row.justify-content-center.mt-3
+    each item in itemlist
+        .card.col-lg-4.col-xl-3.p-1.m-2.shadow.rounded
+            h3.text-muted=item.title
+            .card-body
+                img(src=`${item.image}`, width ="240px" height="240px" alt='')
+                form(action='/user/', method='get')
+                    input(type='text', name='id', value=`${item.id}`, hidden='')
+                    button.btn.btn-info.float-right.mb-2.select-button(type='submit', data-id='5') More info

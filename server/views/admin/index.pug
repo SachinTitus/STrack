@@ -1,0 +1,37 @@
+extends ../layout/index
+block content
+    .jumbotron
+        .row.justify-content-center
+            .col-xl-4
+                h1.display-4 Hello, Admin
+                p.lead
+                    | SpiderTrack is developed for identifying fraudulent transactions
+                    | one-commerce websites
+            .col-xl-4
+                .card.p-3.shadow-lg.rounded
+                    h1 Add items
+                    .card-body
+                        form(action='/admin/', method='post')
+                            .form-group
+                                label(for='nameinput') Title
+                                input#nameinput.form-control(type='text', placeholder='Give it a name!', name='title')
+                            .form-group
+                                label(for='priceinput') Price
+                                input#priceinput.form-control(type='number', placeholder='Price', name='price')
+
+                            .form-group
+                                label(for='exampleFormControlTextarea1') Content
+                                textarea#exampleFormControlTextarea1.form-control(placeholder='What is it about?', rows='3', name='description')
+                            button.btn.btn-primary.float-right.mb-2(type='submit') Add Item
+
+    .row.justify-content-center.mt-3
+        each item in itemlist
+            .card.col-lg-4.col-xl-3.p-1.m-2.shadow.rounded
+                h3.text-muted=item.title
+                .card-body
+                    img(src=`${item.image}`, width ="240px" height="240px" alt='')
+                    form(action='/admin/', method='get')
+                        button.btn.btn-danger.float-right.mb-2.delete-button(type='submit', data-id=`${item.id}`) Delete
+
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+    script(src='/js/admin.js')
